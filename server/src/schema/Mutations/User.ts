@@ -1,6 +1,7 @@
 import { UserType } from '../TypeDef/User';
-import { GraphQLString } from 'graphql';
+import { GraphQLString, GraphQLID } from 'graphql';
 import { Users } from '../../Entities/Users';
+import { resolve } from 'path/posix';
 
 export const CREATE_USER = {
 	type: UserType,
@@ -16,6 +17,22 @@ export const CREATE_USER = {
 			name,
 			username,
 			password,
+		};
+	},
+};
+
+const DELETE_USER = {
+	type: UserType,
+	args: {
+		id: { type: GraphQLID },
+	},
+	async resolve(parent: any, args: any) {
+		const { id } = args;
+
+		await Users.delete({ id });
+
+		return {
+			message: 'The user was deleted successfully',
 		};
 	},
 };
