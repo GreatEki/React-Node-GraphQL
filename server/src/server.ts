@@ -4,6 +4,7 @@ import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
 import { createConnection } from 'typeorm';
 import { schema } from './schema/index';
+import { Users } from './Entities/Users';
 
 const main = async () => {
 	// Create Connection to Database
@@ -13,8 +14,8 @@ const main = async () => {
 		username: 'root',
 		password: '',
 		logging: true,
-		synchronize: true,
-		entities: [],
+		synchronize: false,
+		entities: [Users],
 	});
 
 	//  Initialise express application
