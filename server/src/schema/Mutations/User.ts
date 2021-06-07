@@ -3,7 +3,6 @@ import { MessageType } from '../TypeDef/Message';
 
 import { GraphQLString, GraphQLID } from 'graphql';
 import { Users } from '../../Entities/Users';
-import { resolve } from 'path/posix';
 
 export const CREATE_USER = {
 	type: UserType,
@@ -64,7 +63,7 @@ export const CHANGE_PASSWORD = {
 		if (!user) {
 			// throw new Error('No record found for this user');
 
-			return {
+			return { 
 				success: false,
 				message: 'No record found for this user',
 			};
