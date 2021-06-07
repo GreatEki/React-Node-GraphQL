@@ -8,7 +8,7 @@ const CreateUser = () => {
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 
-	const [createUser, { error }] = useMutation(CREATE_USER);
+	const [createUser] = useMutation(CREATE_USER);
 
 	const handleCreateUser = async () => {
 		await createUser({

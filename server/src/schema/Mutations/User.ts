@@ -13,6 +13,13 @@ export const CREATE_USER = {
 	},
 	async resolve(parent: any, args: any) {
 		const { name, username, password } = args;
+
+		if (!name || !username || !password) {
+			return {
+				success: false,
+				message: 'You are missing some fields',
+			};
+		}
 		await Users.insert({ name, username, password });
 		return {
 			name,
@@ -30,12 +37,23 @@ export const DELETE_USER = {
 	async resolve(parent: any, args: any) {
 		const { id } = args;
 
-		await Users.delete({ id });
+		const theUser = await Users.findOne({ id });
 
-		return {
-			success: true,
-			message: 'The user was deleted successfully',
-		};
+		if (!theUser) {
+			return {
+				success: false,
+				message: 'User does not exist',
+			};
+		}
+
+		if (theUser) {
+			await Users.delete({ id });
+
+			return {
+				success: true,
+				message: 'The user was deleted successfully',
+			};
+		}
 	},
 };
 

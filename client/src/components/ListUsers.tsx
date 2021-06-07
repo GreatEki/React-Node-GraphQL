@@ -1,27 +1,47 @@
 import React from 'react';
 import { GET_ALL_USERS } from '../GraphQL/Queries';
-import { useQuery } from '@apollo/client';
-import userEvent from '@testing-library/user-event';
+import { DELETE_USER } from '../GraphQL/Mutations';
+import { useQuery, useMutation } from '@apollo/client';
 
 function ListUsers() {
-	const { data, error } = useQuery(GET_ALL_USERS);
+	const { data } = useQuery(GET_ALL_USERS);
 
-	if (data) {
+	const [deleteUser] = useMutation(DELETE_USER);
+
+	const executeDeleteUser = async (id: number) => {
+		const deleteResponse: any = await deleteUser({ variables: { id: id } });
+
+		const { data } = deleteResponse;
+
 		console.log(data);
-	}
+
+		if (data.deleteUser.success) {
+			alert(`${data.deleteUser.message}`);
+		} else {
+			alert(`${data.deleteUser.message}`);
+		}
+	};
+
 	return (
 		<div>
 			<span> List of Users Component</span>
 
 			{data ? (
-				data.getAllUsers.map((user: { username: string; name: string }) => (
-					<div>
-						<p>
-							<span style={{ color: 'Blue' }}> Username: </span> {user.username}{' '}
-							<span style={{ color: 'Green' }}> Name: </span> {user.name}{' '}
-						</p>
-					</div>
-				))
+				data.getAllUsers.map(
+					(user: { id: number; username: string; name: string }) => (
+						<div key={user.id}>
+							<p>
+								<span style={{ color: 'Blue' }}> Username: </span>{' '}
+								{user.username} <span style={{ color: 'Green' }}> Name: </span>{' '}
+								{user.name}{' '}
+								<button onClick={() => executeDeleteUser(user.id)}>
+									{' '}
+									Delete User{' '}
+								</button>
+							</p>
+						</div>
+					)
+				)
 			) : (
 				<span>Data Unavailable</span>
 			)}
