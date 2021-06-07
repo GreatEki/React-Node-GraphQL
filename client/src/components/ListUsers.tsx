@@ -3,6 +3,8 @@ import { GET_ALL_USERS } from '../GraphQL/Queries';
 import { DELETE_USER } from '../GraphQL/Mutations';
 import { useQuery, useMutation } from '@apollo/client';
 
+import './component.css';
+
 function ListUsers() {
 	const { data } = useQuery(GET_ALL_USERS);
 
@@ -34,7 +36,9 @@ function ListUsers() {
 								<span style={{ color: 'Blue' }}> Username: </span>{' '}
 								{user.username} <span style={{ color: 'Green' }}> Name: </span>{' '}
 								{user.name}{' '}
-								<button onClick={() => executeDeleteUser(user.id)}>
+								<button
+									className='deleteBtn'
+									onClick={() => executeDeleteUser(user.id)}>
 									{' '}
 									Delete User{' '}
 								</button>

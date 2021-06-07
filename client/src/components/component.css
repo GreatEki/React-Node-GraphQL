@@ -1,0 +1,19 @@
+.createBtn {
+	width: max-content;
+	background-color: blue;
+	color: white;
+	margin: 1rem;
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.3rem;
+	border: none;
+}
+
+.deleteBtn {
+	width: max-content;
+	background-color: red;
+	color: white;
+	margin: 1rem;
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.3rem;
+	border: none;
+}

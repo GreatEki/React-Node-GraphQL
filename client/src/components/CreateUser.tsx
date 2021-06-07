@@ -3,6 +3,8 @@ import { useMutation } from '@apollo/client';
 
 import { CREATE_USER } from '../GraphQL/Mutations';
 
+import './component.css';
+
 const CreateUser = () => {
 	const [name, setName] = useState('');
 	const [userName, setUserName] = useState('');
@@ -51,7 +53,9 @@ const CreateUser = () => {
 					/>
 				</div>
 
-				<button onClick={handleCreateUser}>Create User</button>
+				<button className='createBtn' onClick={handleCreateUser}>
+					Create User
+				</button>
 			</div>
 		</div>
 	);
