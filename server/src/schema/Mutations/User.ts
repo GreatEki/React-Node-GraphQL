@@ -23,7 +23,7 @@ export const CREATE_USER = {
 };
 
 export const DELETE_USER = {
-	type: UserType,
+	type: MessageType,
 	args: {
 		id: { type: GraphQLID },
 	},
@@ -33,6 +33,7 @@ export const DELETE_USER = {
 		await Users.delete({ id });
 
 		return {
+			success: true,
 			message: 'The user was deleted successfully',
 		};
 	},
@@ -63,7 +64,7 @@ export const CHANGE_PASSWORD = {
 		if (!user) {
 			// throw new Error('No record found for this user');
 
-			return { 
+			return {
 				success: false,
 				message: 'No record found for this user',
 			};
