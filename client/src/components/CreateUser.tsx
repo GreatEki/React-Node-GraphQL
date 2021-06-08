@@ -24,6 +24,7 @@ const CreateUser = () => {
 
 	return (
 		<div>
+			<h3> Create User Component </h3>
 			<div className='createUser'>
 				<div>
 					<label> Name </label>

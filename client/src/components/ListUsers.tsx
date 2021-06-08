@@ -26,7 +26,7 @@ function ListUsers() {
 
 	return (
 		<div>
-			<span> List of Users Component</span>
+			<h3> List of Users Component</h3>
 
 			{data ? (
 				data.getAllUsers.map(
