@@ -17,3 +17,13 @@
 	border-radius: 0.3rem;
 	border: none;
 }
+
+.editBtn {
+	width: max-content;
+	background-color: green;
+	color: white;
+	margin: 1rem;
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.3rem;
+	border: none;
+}
